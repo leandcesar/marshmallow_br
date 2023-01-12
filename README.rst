@@ -5,16 +5,19 @@ Marshmallow-BR
 .. raw:: html
 
    <h1 align="center">
-    <img src="https://github.com/leandcesar/marshmallow_br/blob/main/docs/static/logo.png?raw=true"  width="300px" alt="Marshmallow BR"/>
+     <a href="https://github.com/leandcesar/marshmallow-br">
+       <img src="https://github.com/leandcesar/marshmallow-br/blob/main/docs/static/logo.png?raw=true"  width="200px" alt="Marshmallow BR"/>
+     </a>
    </h1>
+
 
 This library provides `Marshmallow`_ fields and validators for Brazilian documents:
 
-* CNH
-* CNPJ
-* CPF
-* Brazilian birth, marriage and death certificates
 * Brazilian phone number
+* Brazilian birth, marriage and death certificates
+* CNH (Carteira Nacional de Habilitação)
+* CNPJ (Cadastro Nacional da Pessoa Jurídica)
+* CPF (Cadastro de Pessoas Físicas)
 
 Installing
 ----------
@@ -46,7 +49,7 @@ Usage
         "cnh": "64076917022",
         "cnpj": "52203670000109",
         "cpf": "98008862068",
-        "phones": ["5511999999999", "11999999999", "+55 (11) 99999-9999", "55 11 99999999"],
+        "phones": ["5511999999999", "11 999999999", "+55(11)99999-9999", "11 9999-9999"],
     }
 
     data = Documents().load(raw_data)
@@ -59,7 +62,7 @@ Usage
     # 'phones': ['+55 (11) 99999-9999',
     #             '(11) 99999-9999',
     #             '+55 (11) 99999-9999',
-    #             '+55 (11) 9999-9999']}
+    #             '(11) 9999-9999']}
 
 
 .. _`Marshmallow`: https://github.com/marshmallow-code/marshmallow
