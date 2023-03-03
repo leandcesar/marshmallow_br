@@ -1,4 +1,3 @@
-==============
 Marshmallow-BR
 ==============
 
@@ -19,19 +18,18 @@ This library provides `Marshmallow`_ fields and validators for Brazilian documen
 * CNPJ (Cadastro Nacional da Pessoa Jurídica)
 * CPF (Cadastro de Pessoas Físicas)
 
-Installing
-----------
+Installation
+------------
 
 .. code-block:: console
 
-    $ pip install marshmallow-br
+    pip install marshmallow-br
 
-Usage
------
+Example usage
+-------------
 
 .. code:: py
 
-    from pprint import pprint
     from marshmallow import Schema
 
     from marshmallow_br import fields
@@ -53,16 +51,20 @@ Usage
     }
 
     data = Documents().load(raw_data)
-    pprint(data)
+    print(data)
 
-    # {'certificate': '121739.01.55.2014.1.67634.174.9407029-55',
-    # 'cnh': '64076917022',
-    # 'cnpj': '52.203.670/0001-09',
-    # 'cpf': '980.088.620-68',
-    # 'phones': ['+55 (11) 99999-9999',
-    #             '(11) 99999-9999',
-    #             '+55 (11) 99999-9999',
-    #             '(11) 9999-9999']}
+    # {
+    #     'certificate': '121739.01.55.2014.1.67634.174.9407029-55',
+    #     'cnh': '64076917022',
+    #     'cnpj': '52.203.670/0001-09',
+    #     'cpf': '980.088.620-68',
+    #     'phones': [
+    #         '+55 (11) 99999-9999',
+    #         '(11) 99999-9999',
+    #         '+55 (11) 99999-9999',
+    #         '(11) 9999-9999'
+    #     ]
+    # }
 
 
 .. _`Marshmallow`: https://github.com/marshmallow-code/marshmallow
