@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from abc import abstractmethod
-
-from marshmallow.fields import *
+from marshmallow.fields import String
 
 from marshmallow_br import validate
 
@@ -92,7 +91,10 @@ class Certificate(Base):
         super().__init__(validator, *args, **kwargs)
 
     def _mask(self, value: str) -> str:
-        return f"{value[:6]}.{value[6:8]}.{value[8:10]}.{value[10:14]}.{value[14]}.{value[15:20]}.{value[20:23]}.{value[23:30]}-{value[30:]}"
+        return "{0}.{1}.{2}.{3}.{4}.{5}.{6}.{7}-{8}".format(
+            value[:6], value[6:8], value[8:10], value[10:14], value[14], value[15:20],
+            value[20:23], value[23:30], value[30:]
+        )
 
 
 class Phone(Base):
