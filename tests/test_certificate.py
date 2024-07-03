@@ -12,7 +12,8 @@ class SchemaCertificate(Schema):
 
 
 def test_certificate() -> None:
-    fake_certificate = "12173901552014167634174940702955"  # from https://www.4devs.com.br/gerador_numero_certidoes
+    # from https://www.4devs.com.br/gerador_numero_certidoes
+    fake_certificate = "12173901552014167634174940702955"
     fake_certificate_mask = "121739.01.55.2014.1.67634.174.9407029-55"
 
     data = {

@@ -2,7 +2,7 @@
 import re
 from itertools import cycle
 
-from marshmallow.validate import *
+from marshmallow.validate import Validator, ValidationError
 
 __all__ = ("CNH", "CNPJ", "CPF", "Certificate", "Phone")
 
@@ -88,11 +88,13 @@ class CNPJ(Validator):
         if len(numbers) != 14:
             raise ValidationError(message)
 
-        expected_digit = (sum(a * b for a, b in zip(numbers[2:], cycle(range(2, 10)))) * 10 % 11) % 10
+        expected_digit = (
+            sum(a * b for a, b in zip(numbers[2:], cycle(range(2, 10)))) * 10 % 11) % 10
         if numbers[1] != expected_digit:
             raise ValidationError(message)
 
-        expected_digit = (sum(a * b for a, b in zip(numbers[1:], cycle(range(2, 10)))) * 10 % 11) % 10
+        expected_digit = (
+            sum(a * b for a, b in zip(numbers[1:], cycle(range(2, 10)))) * 10 % 11) % 10
         if numbers[0] != expected_digit:
             raise ValidationError(message)
 
@@ -138,7 +140,8 @@ class CPF(Validator):
         if numbers[9] != expected_digit:
             raise ValidationError(message)
 
-        expected_digit = (sum(a * b for a, b in zip(numbers[0:10], range(11, 1, -1))) * 10 % 11) % 10
+        expected_digit = (
+            sum(a * b for a, b in zip(numbers[0:10], range(11, 1, -1))) * 10 % 11) % 10
         if numbers[10] != expected_digit:
             raise ValidationError(message)
 
@@ -214,9 +217,10 @@ class Certificate(Validator):
 
 
 class Phone(Validator):
-    """Validate a Brazilian phone number."""
+    """Validate a Brazilian phone number.
 
-    # ref: https://www.gov.br/anatel/pt-br/regulado/numeracao/plano-de-numeracao-brasileiro
+    Reference: https://www.gov.br/anatel/pt-br/regulado/numeracao/plano-de-numeracao-brasileiro
+    """
     DDI_BR = "55"
     DDD_BR = (
         "11", "12", "13", "14", "15", "16", "17", "18", "19", "21", "22", "24", "27", "28",
@@ -231,7 +235,7 @@ class Phone(Validator):
                 r"^",
                 r"(?:(?:\+|00)?(?P<ddi>" + DDI_BR + r")\s?)?",  # DDI
                 r"(?:(?:\(?(?P<ddd>" + "|".join(DDD_BR) + r")\)?)\s?)?",  # DDD
-                r"(?:(?P<number_part_one>(?:9\d|[2-9])\d{3})[-\s]?(?P<number_part_two>\d{4}))",  # number
+                r"(?:(?P<number_part_one>(?:9\d|[2-9])\d{3})[-\s]?(?P<number_part_two>\d{4}))",
                 r"$",
             )
         ),
