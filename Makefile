@@ -12,7 +12,6 @@ for line in sys.stdin:
 endef
 export PRINT_HELP_PYSCRIPT
 
-
 help:
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
@@ -31,14 +30,20 @@ clear: ## remove all build, test, coverage and Python artifacts
 	rm -fr htmlcov/
 	rm -fr .pytest_cache
 
-release: clear ## package and upload a release
-	python setup.py sdist
-	python setup.py bdist_wheel
+dist: clear ## builds source and wheel package
+	python -m build
+
+release: dist ## package and upload a release
 	ls -l dist
 	twine upload dist/* --verbose
 
 lint:
 	flake8 src tests
 
-test:
-	pytest -v --cov=src/marshmallow_br
+test: ## run tests quickly with the default Python
+	pytest -v
+
+coverage:
+	pytest -v --cov
+
+
