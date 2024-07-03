@@ -36,3 +36,9 @@ release: clear ## package and upload a release
 	python setup.py bdist_wheel
 	ls -l dist
 	twine upload dist/* --verbose
+
+lint:
+	flake8 src tests
+
+test:
+	pytest -v --cov=src/marshmallow_br
