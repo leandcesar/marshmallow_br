@@ -1,0 +1,53 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "marshmallow-br"
+version = "0.1.1"
+authors = [
+  { name="Leandro César Cassimiro", email="ccleandroc@gmail.com" },
+]
+license = {file = "LICENSE"}
+description = "An unofficial extension to Marshmallow fields and validators for Brazilian documents"
+readme = "README.rst"
+requires-python = ">=3.8"
+classifiers = [
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+keywords=[
+    "serialization",
+    "br",
+    "brazilian",
+    "document",
+    "marshal",
+    "marshalling",
+    "deserialization",
+    "validation",
+    "schema"
+]
+dependencies = [
+    "marshmallow>=3.0.0b10",
+]
+
+[project.urls]
+Homepage = "https://github.com/leandcesar/marshmallow-br"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+
+pythonpath = [
+    "src"
+]
+testpaths = [
+    "tests",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/marshmallow_br"]
